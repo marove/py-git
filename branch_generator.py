@@ -13,8 +13,12 @@ translated_branch = translator.translate(branch_name, dest='en').text.capitalize
 
 final_branch_name = directory + pbi_number + "-" + translated_branch
 
-repo = Repo("./")
-repo.git.checkout("develop")
-repo.git.checkout("-b", final_branch_name)
+confirmation_response = input("The branch name will be " + final_branch_name + ". Is it ok? (y/n): ").lower()
 
-print("Branch created: " + final_branch_name)
+if confirmation_response == 'y':
+    repo = Repo("./")
+    repo.git.checkout("develop")
+    repo.git.checkout("-b", final_branch_name)
+    print("Branch created: " + final_branch_name)
+else:
+    print("exited")
